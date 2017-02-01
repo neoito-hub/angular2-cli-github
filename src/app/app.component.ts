@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubService } from './github.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'Github Profile Search';
   githubUser: any;
   errorMessage: any;
-  constructor() {
+  constructor(private githubService: GithubService) {
     this.githubUser = {};
   }
   ngOnInit() {
@@ -17,7 +18,21 @@ export class AppComponent implements OnInit {
           this.getUserInformation();
   }
   searchUser() {
+      if (this.githubUser.userName && this.githubUser.userName.length > 0) {
+          this.githubService.updateUser(this.githubUser.userName);
+          this.getUserInformation();
+          // console.log(this.githubUser)
+      } else {
+          this.githubUser.user = false;
+      }
   }
 
   getUserInformation() {
+    this.githubService.getUser()
+        .subscribe(
+          data => this.githubUser.user = data,
+          error =>  this.errorMessage = <any>error
+        );
+        console.log('Github Username' + this.githubUser);
+  }
 }
