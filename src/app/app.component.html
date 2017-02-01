@@ -1,3 +1,23 @@
+<md-card layout-xs="column" layout="row" layout-align="center center">
 <h1>
   {{title}}
 </h1>
+
+<md-input-container>
+  <input md-input placeholder="Github username" [(ngModel)] = githubUser.userName (keyup)="searchUser()">
+</md-input-container>
+<md-card  layout-align="center center" flex width="200">
+  <md-card-header>
+    <md-card-title>{{githubUser.user.name}}</md-card-title>
+    <md-card-subtitle>{{githubUser.user.company}}</md-card-subtitle>
+  </md-card-header>
+  <img md-card-image src={{githubUser.user.avatar_url}} flex width="200">
+  <md-card-content>
+    <p>
+      {{githubUser.user.bio}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+  </md-card-actions>
+</md-card>
+</md-card>
