@@ -7,7 +7,7 @@ import { GithubService } from './github.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Github Profile Search';
+  title = 'Github Profile Search from Faya';
   githubUser: any;
   errorMessage: any;
   constructor(private githubService: GithubService) {
